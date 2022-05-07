@@ -2,18 +2,18 @@
     import { onMount, createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    export let formOptions = {
-        formTitle: "Register",
-        formItems: [
-            {type: "text", label: "Username", isRequired: true},
+    //Default options and styling for the form
+    const defaultOptions = {
+        title: "Example",
+        items: [
+            {type: "text", label: "Name", isRequired: true},
             {type: "email", label: "Email", isRequired: true},
-            {type: "password", label: "Password", isRequired: true},
-            {type: "password", label: "Confirm Password", isRequired: true}
+            {type: "date", label: "Date of Birth", isRequired: true},
         ],
-        submitButtonText: "Submit"
+        submitText: "Submit"
     }
 
-    export let formStyles = {
+    const defaultStyling = {
         container: {
             width: "22rem",
             padding: "1em 2em",
@@ -55,31 +55,28 @@
         },
         button:{
             width: "10rem",
-            height: "4rem",
-            padding: "0.6em",
+            height: "3rem",
+            padding: "0",
             margin: "0 auto",
-            fontSize: "14pt",
+            fontSize: "16pt",
+            textAlign: "center",
             borderColor: "grey",
             borderWidth: "1px",
             borderStyle: "solid",
             borderRadius: "10px",
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "#ffffff",
             hoverBackgroundColor: "#dbdbdb",
             transition: 'border-color ease-in-out 200ms, background-color ease-in-out 200ms, outline ease-in-out 200ms'
         }
     }
 
-    //Default Form Styling
-    const defaultWidth = '10rem';
-    const defaultPadding = '1em';
-    const defaultMargin = '1rem';
-    const defaultGap = '1rem';
-    const defaultBorder = '1px solid black';
-    const defaultBorderRadius = '10px';
-    const defaultBackgroundColor = '#ffffff';
+    export let formOptions = {
+        formTitle: defaultOptions.title,
+        formItems: defaultOptions.items,
+        submitButtonText: defaultOptions.submitText,
+    }
 
-    //Default Input Styling
-    const defaultInputGap = '0.6rem';
+    export let formStyles = defaultStyling;
 
     onMount(()=>{
         applyStyles();
@@ -89,31 +86,31 @@
         const modularForm = document.querySelector('.modular-form');
 
         //Main Form Styling
-        modularForm.style.width = formStyles.container.width || defaultWidth;
-        modularForm.style.padding = formStyles.container.padding || defaultPadding;
-        modularForm.style.margin = formStyles.container.margin || defaultMargin;
-        modularForm.style.gap = formStyles.container.gap || defaultGap;
-        modularForm.style.border = `${formStyles.container.borderWidth} ${formStyles.container.borderStyle} ${formStyles.container.borderColor}` || defaultBorder;
-        modularForm.style.borderRadius = formStyles.container.borderRadius || defaultBorderRadius;
-        modularForm.style.backgroundColor = formStyles.container.backgroundColor || defaultBackgroundColor;
+        modularForm.style.width = formStyles.container.width || defaultStyling.container.width;
+        modularForm.style.padding = formStyles.container.padding || defaultStyling.container.padding;
+        modularForm.style.margin = formStyles.container.margin || defaultStyling.container.margin;
+        modularForm.style.gap = formStyles.container.gap || defaultStyling.container.gap;
+        modularForm.style.border = `${formStyles.container.borderWidth} ${formStyles.container.borderStyle} ${formStyles.container.borderColor}` || `${defaultStyling.container.borderWidth} ${defaultStyling.container.borderStyle} ${defaultStyling.container.borderColor}`;
+        modularForm.style.borderRadius = formStyles.container.borderRadius || defaultStyling.container.borderRadius;
+        modularForm.style.backgroundColor = formStyles.container.backgroundColor || defaultStyling.container.backgroundColor;
     
 
         //Form Title Styling
         const formTitle = document.querySelector('.form-title');
 
-        formTitle.style.fontSize = formStyles.title.fontSize;
-        formTitle.style.textDecoration = formStyles.title.textDecoration;
-        formTitle.style.margin = formStyles.title.margin;
-        formTitle.style.padding = formStyles.title.padding;
-        formTitle.style.fontWeight = formStyles.title.fontWeight;
+        formTitle.style.fontSize = formStyles.title.fontSize || defaultStyling.title.fontSize;
+        formTitle.style.textDecoration = formStyles.title.textDecoration || defaultStyling.title.textDecoration;;
+        formTitle.style.margin = formStyles.title.margin || defaultStyling.title.margin;;
+        formTitle.style.padding = formStyles.title.padding || defaultStyling.title.padding;;
+        formTitle.style.fontWeight = formStyles.title.fontWeight || defaultStyling.title.fontWeight;
 
         //Input Containers Styling
         const formContainers = document.getElementsByClassName('input-container');
 
         for (let i = 0; i < formContainers.length; i++) {
             const item = formContainers[i];
-            item.style.width = formStyles.container.width || defaultWidth;
-            item.style.gap = formStyles.inputs.gap || defaultInputGap;
+            item.style.width = formStyles.container.width || defaultStyling.container.width;
+            item.style.gap = formStyles.inputs.gap || defaultStyling.inputs.gap;
         }
 
         //Form Input's Label Styling
@@ -121,9 +118,9 @@
 
         for (let i = 0; i < inputLabels.length; i++) {
             const label = inputLabels[i];
-            label.style.fontWeight = formStyles.inputs.label.fontWeight;
-            label.style.fontSize = formStyles.inputs.label.fontSize;
-            label.style.textDecoration = formStyles.inputs.label.textDecoration;
+            label.style.fontWeight = formStyles.inputs.label.fontWeight || defaultStyling.inputs.fontWeight;
+            label.style.fontSize = formStyles.inputs.label.fontSize || defaultStyling.inputs.fontSize;
+            label.style.textDecoration = formStyles.inputs.label.textDecoration || defaultStyling.inputs.textDecoration;
         }
 
         //Form Inputs Styling
@@ -132,43 +129,44 @@
         for (let i = 0; i < formInputs.length; i++) {
             const item = formInputs[i];
 
-            item.style.width = formStyles.inputs.width;
-            item.style.height = formStyles.inputs.height;
-            item.style.padding = formStyles.inputs.padding;
-            item.style.border = `${formStyles.inputs.borderWidth} ${formStyles.inputs.borderStyle} ${formStyles.inputs.borderColor}`;
-            item.style.borderRadius = formStyles.inputs.borderRadius;
-            item.style.outlineColor = formStyles.inputs.focusBorderColor;
-            item.style.fontSize = formStyles.inputs.fontSize;
-            item.style.transition = formStyles.inputs.transition;
+            item.style.width = formStyles.inputs.width || defaultStyling.inputs.width;
+            item.style.height = formStyles.inputs.height || defaultStyling.inputs.height;
+            item.style.padding = formStyles.inputs.padding || defaultStyling.inputs.padding;
+            item.style.border = `${formStyles.inputs.borderWidth} ${formStyles.inputs.borderStyle} ${formStyles.inputs.borderColor}` || `${defaultStyling.inputs.borderWidth} ${defaultStyling.inputs.borderStyle} ${defaultStyling.inputs.borderColor}`;
+            item.style.borderRadius = formStyles.inputs.borderRadius || defaultStyling.inputs.borderRadius;
+            item.style.outlineColor = formStyles.inputs.focusBorderColor || defaultStyling.inputs.focusBorderColor;
+            item.style.fontSize = formStyles.inputs.fontSize || defaultStyling.inputs.fontSize;
+            item.style.transition = formStyles.inputs.transition || defaultStyling.inputs.transition;
 
             item.onmouseover = ()=>{
-                item.style.borderColor = formStyles.inputs.focusBorderColor;
+                item.style.borderColor = formStyles.inputs.focusBorderColor || defaultStyling.inputs.focusBorderColor;
             }
 
             item.onmouseleave = ()=>{
-                item.style.borderColor = formStyles.inputs.borderColor;
+                item.style.borderColor = formStyles.inputs.borderColor || defaultStyling.inputs.borderColor;
             }
         }
 
         //Form Submit Button Styling
         const submitButton = document.querySelector('.form-button');
         
-        submitButton.style.width = formStyles.button.width;
-        submitButton.style.height = formStyles.button.height;
-        submitButton.style.padding = formStyles.button.padding;
-        submitButton.style.margin = formStyles.button.margin;
-        submitButton.style.border = `${formStyles.button.borderWidth} ${formStyles.button.borderStyle} ${formStyles.button.borderColor}`;
-        submitButton.style.borderRadius = formStyles.button.borderRadius;
-        submitButton.style.backgroundColor = formStyles.button.backgroundColor;
-        submitButton.style.fontSize = formStyles.button.fontSize;
-        submitButton.style.transition = formStyles.button.transition;
+        submitButton.style.width = formStyles.button.width || defaultStyling.button.width;
+        submitButton.style.height = formStyles.button.height || defaultStyling.button.height;
+        submitButton.style.padding = formStyles.button.padding || defaultStyling.button.padding;
+        submitButton.style.margin = formStyles.button.margin || defaultStyling.button.margin;
+        submitButton.style.border = `${formStyles.button.borderWidth} ${formStyles.button.borderStyle} ${formStyles.button.borderColor}` || `${defaultStyling.button.borderWidth} ${defaultStyling.button.borderStyle} ${defaultStyling.button.borderColor}`;
+        submitButton.style.borderRadius = formStyles.button.borderRadius || defaultStyling.button.borderRadius;
+        submitButton.style.backgroundColor = formStyles.button.backgroundColor || defaultStyling.button.backgroundColor;
+        submitButton.style.fontSize = formStyles.button.fontSize || defaultStyling.button.fontSize;
+        submitButton.style.textAlign = formStyles.button.textAlign || defaultStyling.button.textAlign;
+        submitButton.style.transition = formStyles.button.transition || defaultStyling.button.transition;
 
         submitButton.onmouseover = ()=>{
-            submitButton.style.backgroundColor = formStyles.button.hoverBackgroundColor;
+            submitButton.style.backgroundColor = formStyles.button.hoverBackgroundColor || defaultStyling.button.hoverBackgroundColor;
         }
 
         submitButton.onmouseleave = ()=>{
-            submitButton.style.backgroundColor = formStyles.button.backgroundColor;
+            submitButton.style.backgroundColor = formStyles.button.backgroundColor || defaultStyling.button.backgroundColor;
         }
     }
 
@@ -195,6 +193,8 @@
     <h1 class="form-title">{formOptions.formTitle}</h1>
     {/if}
 
+    <slot name="form-top-slot"></slot>
+
     {#each formOptions.formItems as item}
         {#if item.isRequired}
         <div class="input-container">
@@ -213,7 +213,9 @@
         {/if}
     {/each}
 
-    <button class="form-button" type="submit">{formOptions.submitButtonText}</button>
+    <button class="form-button" type="submit">{formOptions.submitButtonText || defaultOptions.submitText}</button>
+
+    <slot name="form-bottom-slot"></slot>
 </form>
 
 <style>
