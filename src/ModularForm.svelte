@@ -25,6 +25,13 @@
             borderRadius: "10px",
             backgroundColor: "#f5f5f5"
         },
+        title:{
+            fontSize: "32pt",
+            margin: "0.4rem auto",
+            padding: "0",
+            fontWeight: "bold",
+            textDecoration: "none",
+        },
         inputs:{
             width: "22rem",
             height: "3rem",
@@ -39,6 +46,25 @@
             backgroundColor: "#f5f5f5",
             hoverBackgroundColor: "#dbdbdb",
             focusBorderColor: '#0022c9',
+            transition: 'border-color ease-in-out 200ms, background-color ease-in-out 200ms, outline ease-in-out 200ms',
+            label:{
+                fontSize: '14pt',
+                fontWeight: 'normal',
+                textDecoration: 'none',
+            }
+        },
+        button:{
+            width: "10rem",
+            height: "4rem",
+            padding: "0.6em",
+            margin: "0 auto",
+            fontSize: "14pt",
+            borderColor: "grey",
+            borderWidth: "1px",
+            borderStyle: "solid",
+            borderRadius: "10px",
+            backgroundColor: "#f5f5f5",
+            hoverBackgroundColor: "#dbdbdb",
             transition: 'border-color ease-in-out 200ms, background-color ease-in-out 200ms, outline ease-in-out 200ms'
         }
     }
@@ -71,6 +97,16 @@
         modularForm.style.borderRadius = formStyles.container.borderRadius || defaultBorderRadius;
         modularForm.style.backgroundColor = formStyles.container.backgroundColor || defaultBackgroundColor;
     
+
+        //Form Title Styling
+        const formTitle = document.querySelector('.form-title');
+
+        formTitle.style.fontSize = formStyles.title.fontSize;
+        formTitle.style.textDecoration = formStyles.title.textDecoration;
+        formTitle.style.margin = formStyles.title.margin;
+        formTitle.style.padding = formStyles.title.padding;
+        formTitle.style.fontWeight = formStyles.title.fontWeight;
+
         //Input Containers Styling
         const formContainers = document.getElementsByClassName('input-container');
 
@@ -78,6 +114,16 @@
             const item = formContainers[i];
             item.style.width = formStyles.container.width || defaultWidth;
             item.style.gap = formStyles.inputs.gap || defaultInputGap;
+        }
+
+        //Form Input's Label Styling
+        const inputLabels = document.getElementsByClassName('input-label');
+
+        for (let i = 0; i < inputLabels.length; i++) {
+            const label = inputLabels[i];
+            label.style.fontWeight = formStyles.inputs.label.fontWeight;
+            label.style.fontSize = formStyles.inputs.label.fontSize;
+            label.style.textDecoration = formStyles.inputs.label.textDecoration;
         }
 
         //Form Inputs Styling
@@ -103,6 +149,27 @@
                 item.style.borderColor = formStyles.inputs.borderColor;
             }
         }
+
+        //Form Submit Button Styling
+        const submitButton = document.querySelector('.form-button');
+        
+        submitButton.style.width = formStyles.button.width;
+        submitButton.style.height = formStyles.button.height;
+        submitButton.style.padding = formStyles.button.padding;
+        submitButton.style.margin = formStyles.button.margin;
+        submitButton.style.border = `${formStyles.button.borderWidth} ${formStyles.button.borderStyle} ${formStyles.button.borderColor}`;
+        submitButton.style.borderRadius = formStyles.button.borderRadius;
+        submitButton.style.backgroundColor = formStyles.button.backgroundColor;
+        submitButton.style.fontSize = formStyles.button.fontSize;
+        submitButton.style.transition = formStyles.button.transition;
+
+        submitButton.onmouseover = ()=>{
+            submitButton.style.backgroundColor = formStyles.button.hoverBackgroundColor;
+        }
+
+        submitButton.onmouseleave = ()=>{
+            submitButton.style.backgroundColor = formStyles.button.backgroundColor;
+        }
     }
 
     const formatInputs = (formValues)=>{
@@ -127,30 +194,29 @@
     {#if formOptions.formTitle}
     <h1 class="form-title">{formOptions.formTitle}</h1>
     {/if}
+
     {#each formOptions.formItems as item}
         {#if item.isRequired}
         <div class="input-container">
             {#if item.label}
-            <label for={item.name || `form-item-${item.type || "text"}-${formOptions.formItems.indexOf(item)}`}>{item.label}</label>
+            <label class="input-label" for={item.name || `form-item-${item.type || "text"}-${formOptions.formItems.indexOf(item)}`}>{item.label}</label>
             {/if}
             <input class="form-item" type={item.type || "text"} placeholder={item.placeholder || ""} name={item.name || `form-item-${item.type || "text"}-${formOptions.formItems.indexOf(item)}`} required>
         </div>
         {:else}
         <div class="input-container">
             {#if item.label}
-            <label for={item.name || `form-item-${item.type || "text"}-${formOptions.formItems.indexOf(item)}`}>{item.label}</label>
+            <label class="input-label" for={item.name || `form-item-${item.type || "text"}-${formOptions.formItems.indexOf(item)}`}>{item.label}</label>
             {/if}
             <input class="form-item" type={item.type || "text"} placeholder={item.placeholder || ""} name={item.name || `form-item-${item.type || "text"}-${formOptions.formItems.indexOf(item)}`}>
         </div>
         {/if}
     {/each}
 
-
     <button class="form-button" type="submit">{formOptions.submitButtonText}</button>
 </form>
 
 <style>
-
 .modular-form{
     display: flex;
     flex-direction: column;
@@ -162,4 +228,7 @@
     flex-direction: column;
 }
 
+.form-button{
+    cursor: pointer;
+}
 </style>
