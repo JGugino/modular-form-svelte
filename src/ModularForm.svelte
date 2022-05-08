@@ -2,7 +2,7 @@
     import { onMount, createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    //Default options and styling for the form
+    //Default fallback options for the form
     const defaultOptions = {
         title: "Example",
         items: [
@@ -13,6 +13,7 @@
         submitText: "Submit"
     }
 
+    //Default fallback styling for the form
     const defaultStyling = {
         container: {
             width: "22rem",
@@ -74,22 +75,26 @@
         }
     }
 
+    //Exported formOptions used to assign custom core info to the form
     export let formOptions = {
         formTitle: defaultOptions.title,
         formItems: defaultOptions.items,
         submitButtonText: defaultOptions.submitText,
     }
 
+    //Exported formStyles used to assign custom styling to the form
     export let formStyles = defaultStyling;
 
+    //Mount function that calls the applyStyles function once the component is mounted to the page 
     onMount(()=>{
         applyStyles();
     });
 
+    //Function to apply the specified styling to the form
     const applyStyles = ()=>{
+        //Main Form Styling
         const modularForm = document.querySelector('.modular-form');
             
-        //Main Form Styling
         if(modularForm){
             modularForm.style.width = formStyles.container.width || defaultStyling.container.width;
             modularForm.style.padding = formStyles.container.padding || defaultStyling.container.padding;
@@ -189,6 +194,7 @@
         }
     }
 
+    //Function that returns an array of the key/values of each of the inputs
     const formatInputs = (formValues)=>{
         const formData = new FormData(formValues);
         let formattedInputs = [];
@@ -200,6 +206,7 @@
         return formattedInputs;
     }
 
+    //Function called when form is submitted
     const formSubmitted = (e)=>{
         const formattedInputs = formatInputs(e.target);
         dispatch('formSubmitted', formattedInputs);
@@ -210,13 +217,16 @@
 <slot name="form-outter-top-slot"></slot>
 
 <form class="modular-form" on:submit|preventDefault|stopPropagation={formSubmitted}>
+    <!--Title texts for the form which only displays if a title is provided in the formOptions-->
     {#if formOptions.formTitle}
     <h1 class="form-title">{formOptions.formTitle}</h1>
     {/if}
 
     <slot name="form-inner-top-slot"></slot>
 
+    <!--Each loop that add each of the specified inputs to the form, uses fallback info if property isn't specified-->
     {#each formOptions.formItems as item}
+        <!--If the input is required a 'required' property is added-->
         {#if item.isRequired}
         <div class="input-container">
             {#if item.label}
@@ -234,9 +244,10 @@
         {/if}
     {/each}
 
-    <button class="form-button" type="submit">{formOptions.submitButtonText || defaultOptions.submitText}</button>
-
     <slot name="form-inner-bottom-slot"></slot>
+
+    <!--Submit button for the form, uses fallback data if properties aren't provided-->
+    <button class="form-button" type="submit">{formOptions.submitButtonText || defaultOptions.submitText}</button>
 </form>
 
 <slot name="form-outter-bottom-slot"></slot>
