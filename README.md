@@ -20,7 +20,7 @@
 {
     formTitle: "",
     formItems: [], 
-    submitText: ""
+    submitButtonText: ""
 } 
 ```
 
@@ -122,7 +122,7 @@ const formSubmitted = (event)=>{
 -----
 
 ## Form Slots
-You are able to further customize the form by taking advantage of the slots provided. There are 4 slots included inside the form, 2 on the outside of the form container on the top and bottom, and 2 inside the form container, 1 between the title and first input and 1 between the last input and submit button. The naming of theses slots are as follows, `form-outter-(top/bottom)-slot`, and `form-inner-(top/bottom)-slot`. The structure of the element inside your markup would look like the following with all slots included.
+You are able to further customize the form by taking advantage of the slots provided. There are 4 slots included inside the form, 2 on the outside of the form container on the top and bottom, and 3 inside the form container, 1 between the title and first input, 1 between the last input and submit button and 1 between the submit button and the bottom of the form. The naming of theses slots are as follows, `form-outter-(top/bottom)-slot`, and `form-inner-(top)-slot`, `form-inner-bottom-slot`, and `form-inner-bottom-slot-two`. The structure of the element inside your markup would look like the following with all slots included.
 
 ```html
 <ModularForm>
@@ -133,6 +133,9 @@ You are able to further customize the form by taking advantage of the slots prov
     </div>
 
     <div slot="form-inner-bottom-slot">
+    </div>
+
+    <div slot="form-inner-bottom-slot-two">
     </div>
 
     <div slot="form-outter-bottom-slot">

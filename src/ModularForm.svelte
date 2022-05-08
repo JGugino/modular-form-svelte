@@ -259,6 +259,8 @@
 
     <!--Submit button for the form, uses fallback data if properties aren't provided-->
     <button class="form-button" type="submit">{formOptions.submitButtonText || defaultOptions.submitText}</button>
+
+    <slot name="form-inner-bottom-slot-two"></slot>
 </form>
 
 <slot name="form-outter-bottom-slot"></slot>
