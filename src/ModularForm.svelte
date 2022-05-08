@@ -93,28 +93,36 @@
     //Function to apply the specified styling to the form
     const applyStyles = ()=>{
         //Main Form Styling
-        const modularForm = document.querySelector('.modular-form');
+        const modularForms = document.querySelectorAll('.modular-form');
             
-        if(modularForm){
-            modularForm.style.width = formStyles.container.width || defaultStyling.container.width;
-            modularForm.style.padding = formStyles.container.padding || defaultStyling.container.padding;
-            modularForm.style.margin = formStyles.container.margin || defaultStyling.container.margin;
-            modularForm.style.gap = formStyles.container.gap || defaultStyling.container.gap;
-            modularForm.style.border = `${formStyles.container.borderWidth} ${formStyles.container.borderStyle} ${formStyles.container.borderColor}` || `${defaultStyling.container.borderWidth} ${defaultStyling.container.borderStyle} ${defaultStyling.container.borderColor}`;
-            modularForm.style.borderRadius = formStyles.container.borderRadius || defaultStyling.container.borderRadius;
-            modularForm.style.backgroundColor = formStyles.container.backgroundColor || defaultStyling.container.backgroundColor;
+        if(modularForms){
+            for (let i = 0; i < modularForms.length; i++) {
+                const form = modularForms[i];
+                form.style.width = formStyles.container.width || defaultStyling.container.width;
+                form.style.padding = formStyles.container.padding || defaultStyling.container.padding;
+                form.style.margin = formStyles.container.margin || defaultStyling.container.margin;
+                form.style.gap = formStyles.container.gap || defaultStyling.container.gap;
+                form.style.border = `${formStyles.container.borderWidth} ${formStyles.container.borderStyle} ${formStyles.container.borderColor}` || `${defaultStyling.container.borderWidth} ${defaultStyling.container.borderStyle} ${defaultStyling.container.borderColor}`;
+                form.style.borderRadius = formStyles.container.borderRadius || defaultStyling.container.borderRadius;
+                form.style.backgroundColor = formStyles.container.backgroundColor || defaultStyling.container.backgroundColor;
+            }
         }
 
         //Form Title Styling
-        const formTitle = document.querySelector('.form-title');
+        const formTitles = document.querySelectorAll('.form-title');
 
-        if(formTitle){
-            formTitle.style.fontSize = formStyles.title.fontSize || defaultStyling.title.fontSize;
-            formTitle.style.textDecoration = formStyles.title.textDecoration || defaultStyling.title.textDecoration;
-            formTitle.style.margin = formStyles.title.margin || defaultStyling.title.margin;
-            formTitle.style.padding = formStyles.title.padding || defaultStyling.title.padding;
-            formTitle.style.fontWeight = formStyles.title.fontWeight || defaultStyling.title.fontWeight;
-            formTitle.style.color = formStyles.title.fontColor || defaultStyling.title.fontColor;
+        if(formTitles){
+            for (let i = 0; i < formTitles.length; i++) {
+                const titles = formTitles[i];
+            
+                titles.style.fontSize = formStyles.title.fontSize || defaultStyling.title.fontSize;
+                titles.style.textDecoration = formStyles.title.textDecoration || defaultStyling.title.textDecoration;
+                titles.style.textAlign = formStyles.title.textDecoration || defaultStyling.title.textDecoration;
+                titles.style.margin = formStyles.title.margin || defaultStyling.title.margin;
+                titles.style.padding = formStyles.title.padding || defaultStyling.title.padding;
+                titles.style.fontWeight = formStyles.title.fontWeight || defaultStyling.title.fontWeight;
+                titles.style.color = formStyles.title.fontColor || defaultStyling.title.fontColor;
+            }
         }
 
         //Input Containers Styling
@@ -169,27 +177,30 @@
         }
 
         //Form Submit Button Styling
-        const submitButton = document.querySelector('.form-button');
+        const submitButtons = document.querySelectorAll('.form-button');
         
-        if(submitButton){
-            submitButton.style.width = formStyles.button.width || defaultStyling.button.width;
-            submitButton.style.height = formStyles.button.height || defaultStyling.button.height;
-            submitButton.style.padding = formStyles.button.padding || defaultStyling.button.padding;
-            submitButton.style.margin = formStyles.button.margin || defaultStyling.button.margin;
-            submitButton.style.border = `${formStyles.button.borderWidth} ${formStyles.button.borderStyle} ${formStyles.button.borderColor}` || `${defaultStyling.button.borderWidth} ${defaultStyling.button.borderStyle} ${defaultStyling.button.borderColor}`;
-            submitButton.style.borderRadius = formStyles.button.borderRadius || defaultStyling.button.borderRadius;
-            submitButton.style.backgroundColor = formStyles.button.backgroundColor || defaultStyling.button.backgroundColor;
-            submitButton.style.fontSize = formStyles.button.fontSize || defaultStyling.button.fontSize;
-            submitButton.style.color = formStyles.button.fontColor || defaultStyling.button.fontColor;
-            submitButton.style.textAlign = formStyles.button.textAlign || defaultStyling.button.textAlign;
-            submitButton.style.transition = formStyles.button.transition || defaultStyling.button.transition;
+        if(submitButtons){
+            for (let i = 0; i < submitButtons.length; i++) {
+                const buttons = submitButtons[i];
+                buttons.style.width = formStyles.button.width || defaultStyling.button.width;
+                buttons.style.height = formStyles.button.height || defaultStyling.button.height;
+                buttons.style.padding = formStyles.button.padding || defaultStyling.button.padding;
+                buttons.style.margin = formStyles.button.margin || defaultStyling.button.margin;
+                buttons.style.border = `${formStyles.button.borderWidth} ${formStyles.button.borderStyle} ${formStyles.button.borderColor}` || `${defaultStyling.button.borderWidth} ${defaultStyling.button.borderStyle} ${defaultStyling.button.borderColor}`;
+                buttons.style.borderRadius = formStyles.button.borderRadius || defaultStyling.button.borderRadius;
+                buttons.style.backgroundColor = formStyles.button.backgroundColor || defaultStyling.button.backgroundColor;
+                buttons.style.fontSize = formStyles.button.fontSize || defaultStyling.button.fontSize;
+                buttons.style.color = formStyles.button.fontColor || defaultStyling.button.fontColor;
+                buttons.style.textAlign = formStyles.button.textAlign || defaultStyling.button.textAlign;
+                buttons.style.transition = formStyles.button.transition || defaultStyling.button.transition;
 
-            submitButton.onmouseover = ()=>{
-                submitButton.style.backgroundColor = formStyles.button.hoverBackgroundColor || defaultStyling.button.hoverBackgroundColor;
-            }
+                buttons.onmouseover = ()=>{
+                    buttons.style.backgroundColor = formStyles.button.hoverBackgroundColor || defaultStyling.button.hoverBackgroundColor;
+                }
 
-            submitButton.onmouseleave = ()=>{
-                submitButton.style.backgroundColor = formStyles.button.backgroundColor || defaultStyling.button.backgroundColor;
+                buttons.onmouseleave = ()=>{
+                    buttons.style.backgroundColor = formStyles.button.backgroundColor || defaultStyling.button.backgroundColor;
+                }
             }
         }
     }
