@@ -53,7 +53,8 @@ There are 4 different sections of the form you can style, these include the form
         borderWidth: "1px",
         borderStyle: "solid",
         borderRadius: "10px",
-        backgroundColor: "#f5f5f5"
+        backgroundColor: "#f5f5f5",
+        fontFamily: "'Trebuchet MS', sans-serif"
     },
     title:{
         fontSize: "32pt",

@@ -16,7 +16,7 @@
     //Default fallback styling for the form
     const defaultStyling = {
         container: {
-            width: "22rem",
+            width: "28rem",
             padding: "1em 2em",
             margin: "1rem 0",
             gap: "1rem",
@@ -24,7 +24,8 @@
             borderWidth: "1px",
             borderStyle: "solid",
             borderRadius: "10px",
-            backgroundColor: "#f5f5f5"
+            backgroundColor: "#f5f5f5",
+            fontFamily: "'Trebuchet MS', sans-serif"
         },
         title:{
             fontSize: "32pt",
@@ -35,9 +36,9 @@
             textDecoration: "none",
         },
         inputs:{
-            width: "22rem",
+            width: "100%",
             height: "3rem",
-            padding: "0.4em 0 0.4 1.4em",
+            padding: "0.4em 0 0.4em 1em",
             margin: "0rem",
             gap: "0.6rem",
             fontSize: '14pt',
@@ -105,6 +106,7 @@
                 form.style.border = `${formStyles.container.borderWidth} ${formStyles.container.borderStyle} ${formStyles.container.borderColor}` || `${defaultStyling.container.borderWidth} ${defaultStyling.container.borderStyle} ${defaultStyling.container.borderColor}`;
                 form.style.borderRadius = formStyles.container.borderRadius || defaultStyling.container.borderRadius;
                 form.style.backgroundColor = formStyles.container.backgroundColor || defaultStyling.container.backgroundColor;
+                form.style.fontFamily = formStyles.container.fontFamily || defaultStyling.container.fontFamily;
             }
         }
 
@@ -122,6 +124,7 @@
                 titles.style.padding = formStyles.title.padding || defaultStyling.title.padding;
                 titles.style.fontWeight = formStyles.title.fontWeight || defaultStyling.title.fontWeight;
                 titles.style.color = formStyles.title.fontColor || defaultStyling.title.fontColor;
+                titles.style.fontFamily = formStyles.container.fontFamily || defaultStyling.container.fontFamily;
             }
         }
 
@@ -146,6 +149,7 @@
                 label.style.fontSize = formStyles.inputs.label.fontSize || defaultStyling.inputs.fontSize;
                 label.style.textDecoration = formStyles.inputs.label.textDecoration || defaultStyling.inputs.textDecoration;
                 label.style.color = formStyles.inputs.label.fontColor || defaultStyling.inputs.label.fontColor;
+                label.style.fontFamily = formStyles.container.fontFamily || defaultStyling.container.fontFamily;
             }
         }
 
@@ -165,6 +169,7 @@
                 item.style.fontSize = formStyles.inputs.fontSize || defaultStyling.inputs.fontSize;
                 item.style.color = formStyles.inputs.fontColor || defaultStyling.inputs.fontColor;
                 item.style.transition = formStyles.inputs.transition || defaultStyling.inputs.transition;
+                item.style.fontFamily = formStyles.container.fontFamily || defaultStyling.container.fontFamily;
 
                 item.onmouseover = ()=>{
                     item.style.borderColor = formStyles.inputs.focusBorderColor || defaultStyling.inputs.focusBorderColor;
@@ -193,6 +198,7 @@
                 buttons.style.color = formStyles.button.fontColor || defaultStyling.button.fontColor;
                 buttons.style.textAlign = formStyles.button.textAlign || defaultStyling.button.textAlign;
                 buttons.style.transition = formStyles.button.transition || defaultStyling.button.transition;
+                buttons.style.fontFamily = formStyles.container.fontFamily || defaultStyling.container.fontFamily;
 
                 buttons.onmouseover = ()=>{
                     buttons.style.backgroundColor = formStyles.button.hoverBackgroundColor || defaultStyling.button.hoverBackgroundColor;
