@@ -6,7 +6,7 @@
     let currentView = possibleViews[1];
 
 
-    import ModularForm from "./ModularForm.svelte";
+    import ModularForm from "./MultiForm.svelte";
 
     let formOptions = {
         formItems: [

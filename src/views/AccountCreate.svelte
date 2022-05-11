@@ -1,5 +1,5 @@
 <script>
-	import ModularForm from "../ModularForm.svelte";
+	import ModularForm from "../MultiForm.svelte";
 
     let showLogin = true;
 
